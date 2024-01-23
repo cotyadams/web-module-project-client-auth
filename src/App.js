@@ -6,7 +6,7 @@ import Home from './components/Home';
 import LogOut from './components/LogOut';
 import FriendsList from './components/FriendsList';
 import { Provider } from 'react-redux';
-import {thunk} from 'redux-thunk'
+import thunk from 'redux-thunk'
 import reducers from './state/reducers';
 import { createStore, applyMiddleware, compose } from 'redux'
 import PrivateRoute from './components/PrivateRoute'

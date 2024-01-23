@@ -1,6 +1,6 @@
 import { ON_CHANGE, ON_SUBMIT } from "./actionTypes"
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, redirect, useNavigate} from "react-router-dom";
 import axios from "axios";
 import axiosWithAuth from "../api/axiosWithAuth";
 export const onChange = (e) => {
@@ -12,17 +12,10 @@ export const onChange = (e) => {
         }
     }
 }
-export const onSubmit = (credentials, e) => {
+
+export const onSubmit = (e) => {
     e.preventDefault();
-    axios
-        .post('http://localhost:9000/api/login', credentials)
-        .then((res) => {
-            localStorage.setItem('token', res.data.token);
-            <Navigate to='/FriendsList'/>
-        })
-        .catch((err) => {
-            console.error(err)
-        })
+    console.log('inside creator')
     return {
         type: ON_SUBMIT
     }

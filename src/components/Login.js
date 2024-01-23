@@ -10,13 +10,31 @@ const Login = (props) => {
     const onChange = (e) => {
         props.onChange(e);
     }
-    const onSubmit = (e) => {
-        props.onSubmit({ username: props.username, password: props.password }, e);
+    const onTestSubmit = (e) => {
+        const navigate = useNavigate();
+        e.preventDefault();
+        console.log('inside onSubmit funct')
+        props.onSubmit(e);
+
+        // <Navigate to='FriendsList' />
+        axios
+        .post('http://localhost:9000/api/login', credentials)
+        .then((res) => {
+            localStorage.setItem('token', res.data.token);
+            return navigate('/FriendsList')
+        })
+        .catch((err) => {
+            console.error(err)
+        })
+        
     }
     return (
         <div className="login-div">
             <h1>Log In</h1>
-            <form onSubmit={onSubmit} className="login-form">
+            <form onSubmit={() => {
+                onTestSubmit;
+                props.onSubmit;
+            }} className="login-form">
                 <label
                     htmlFor="username-input"
                     className="input-label"
