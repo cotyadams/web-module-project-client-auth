@@ -1,18 +1,17 @@
 import React from "react"
 import { connect } from "react-redux"
-import { onChange } from "../state/actionCreators"
+import { onChange, onSubmit} from "../state/actionCreators"
 const Login = (props) => {
     const onChange = (e) => {
-        props.onChange(e)
+        props.onChange(e);
     }
     const onSubmit = (e) => {
-        e.preventDefault();
-        console.log(props.username, props.password)
+        props.onSubmit({ username: props.username, password: props.password }, e);
     }
     return (
         <div>
             <h1>Log In</h1>
-            <form >
+            <form onSubmit={onSubmit}>
                 <input
                     type="text"
                     name="username" placeholder="username"
@@ -36,4 +35,4 @@ const mapStateToProps = (state) => {
         password: state.login.password
     }
 }
-export default connect(mapStateToProps, {onChange})(Login)
+export default connect(mapStateToProps, {onChange, onSubmit})(Login)

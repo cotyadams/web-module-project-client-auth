@@ -8,7 +8,8 @@ import FriendsList from './components/FriendsList';
 import { Provider } from 'react-redux';
 import {thunk} from 'redux-thunk'
 import reducers from './state/reducers';
-import {createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import PrivateRoute from './components/PrivateRoute'
 
 let store
 export const resetStore = () => {
@@ -26,10 +27,23 @@ function App() {
           <Link to='/FriendsList' >Friends List</Link>
         </nav>
           <Routes>
-            <Route path='/login' element={<Login />} />
-            <Route path='/' element={<Home />} />
-            <Route path='/LogOut' element={<LogOut />} />
-            <Route path='/FriendsList' element={<FriendsList />} />
+          <Route
+            path='/login'
+            element={<Login />}
+          />
+          <Route
+            path='/'
+            element={<Home />}
+          />
+          <Route
+            path='/LogOut'
+            element={<LogOut />}
+          />
+          <PrivateRoute
+            path='/FriendsList/*'
+            element={<FriendsList />}
+            altElement={<Login />}
+          />
           </Routes>
       </div>
     </Provider>

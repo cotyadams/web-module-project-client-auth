@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import { ON_CHANGE } from './actionTypes';
+import { ON_CHANGE, ON_SUBMIT } from './actionTypes';
 const initialLoginState = {
     username: '',
-    password: ''
+    password: '',
+    data: {}
 }
 const login = (state = initialLoginState, action) => {
     switch (action.type) {
@@ -10,6 +11,10 @@ const login = (state = initialLoginState, action) => {
             return {
                 ...state,
                 [action.payload.name]: action.payload.value
+            }
+        case ON_SUBMIT:
+            return {
+                ...state,
             }
         default:
             return state
