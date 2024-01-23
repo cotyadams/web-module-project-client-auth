@@ -22,9 +22,22 @@ function App() {
     <Provider store={store} >
       <div className="App">
         <nav className='navigation'>
-          <Link to='/login' >Log In</Link>
-          <Link to='/LogOut' >Log Out</Link>
-          <Link to='/FriendsList' >Friends List</Link>
+          <Link
+            to='/login'
+            className='link'
+          >Log In</Link>
+          <Link
+            to='/LogOut'
+            className='link'
+          >Log Out</Link>
+          <Link
+            to='/FriendsList'
+            className='link'
+          >Friends List</Link>
+          <Link
+            to='/Logout'
+            className='link'
+          >Add Friend</Link>
         </nav>
           <Routes>
           <Route
@@ -39,11 +52,15 @@ function App() {
             path='/LogOut'
             element={<LogOut />}
           />
-          <PrivateRoute
-            path='/FriendsList/*'
-            element={<FriendsList />}
-            altElement={<Login />}
+          <Route
+            path='/FriendsList'
+            element={
+              <PrivateRoute>
+                <FriendsList />
+              </PrivateRoute>
+            }
           />
+          
           </Routes>
       </div>
     </Provider>

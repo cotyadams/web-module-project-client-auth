@@ -1,4 +1,6 @@
 import { ON_CHANGE, ON_SUBMIT } from "./actionTypes"
+import React from "react";
+import { Navigate } from "react-router-dom";
 import axios from "axios";
 import axiosWithAuth from "../api/axiosWithAuth";
 export const onChange = (e) => {
@@ -15,8 +17,8 @@ export const onSubmit = (credentials, e) => {
     axios
         .post('http://localhost:9000/api/login', credentials)
         .then((res) => {
-            console.log(res)
-            localStorage.setItem('token', res.data.token)
+            localStorage.setItem('token', res.data.token);
+            <Navigate to='/FriendsList'/>
         })
         .catch((err) => {
             console.error(err)

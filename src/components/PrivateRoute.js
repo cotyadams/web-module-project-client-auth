@@ -1,17 +1,10 @@
 import React from "react";
 import { Route, useNavigate, Navigate } from "react-router-dom";
 
-const PrivateRoute = ({ element, altElement, path, ...rest }) => {
-    const navigate = useNavigate()
-    return (
-        <>
-            {
-                localStorage.getItem('token') ?
-                    <Route element={element} path='/FriendsList'/> 
+const PrivateRoute = ({ children }) => {
+                 return localStorage.getItem('token') ?
+                    children
                     :
-                    <Route element={altElement} path='/Login'/>
-            }
-        </>
-    )
+                    <Navigate to='/Login' replace/>
 }
 export default PrivateRoute
